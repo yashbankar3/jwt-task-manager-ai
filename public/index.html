@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Intelligent Meta Data -->
+    <title>Lumina AI | Executive Task Suite</title>
+    <meta name="description" content="Premium task management powered by Lumina AI. Experience executive productivity.">
+    
+    <!-- Premium Favicon (SVG Golden Hexagon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><polygon points=%2250,5 95,25 95,75 50,95 5,75 5,25%22 fill=%22%23d4af37%22/></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Auth Screen -->
+    <div id="authScreen" class="full-page">
+        <div class="auth-card">
+            <div class="main-logo">
+                <div class="hex-icon">L</div>
+                <span>LUMINA <b>AI</b></span>
+            </div>
+            <h2 id="authTitle" style="margin-top: 20px;">Executive Access</h2>
+            <form id="authForm">
+                <input type="email" id="email" placeholder="Corporate Email" required>
+                <div id="phoneGroup" class="hidden"><input type="tel" id="phone" placeholder="Contact Number"></div>
+                <input type="password" id="password" placeholder="Access Key" required>
+                <button type="submit" class="btn-gold">Authenticate</button>
+            </form>
+            <p id="authToggleText" onclick="toggleAuth()">New Executive? <span>Request Access</span></p>
+        </div>
+    </div>
+
+    <!-- Dashboard Layout -->
+    <div id="mainDashboard" class="hidden">
+        <nav class="premium-nav">
+            <div class="nav-left">
+                <div class="hex-icon small">L</div>
+                <span class="brand">LUMINA <b>AI</b></span>
+            </div>
+            <div class="nav-right">
+                <span id="userGreeting">Executive Dashboard</span>
+                <button onclick="logout()" class="btn-logout">Secure Sign-out</button>
+            </div>
+        </nav>
+
+        <main class="dashboard-container">
+            <header class="dashboard-header">
+                <div>
+                    <h1>Strategic Overview</h1>
+                    <p class="subtext">Welcome back. Lumina has analyzed your workflow.</p>
+                </div>
+                <button class="btn-gold-glow" onclick="openTaskModal()">+ Create New Objective</button>
+            </header>
+
+            <div class="layout-grid">
+                <!-- Productivity Intelligence -->
+                <aside class="analytics-panel">
+                    <div class="glass-card">
+                        <h3>Efficiency Score</h3>
+                        <div class="progress-ring-container">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path id="progressPath" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="percentage" id="statPercent">0%</div>
+                        </div>
+                        <div class="ai-insight">
+                            <h5><span class="sparkle">✨</span> LUMINA INSIGHT</h5>
+                            <p id="aiSuggestion">Synchronizing with your objectives...</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Task Workspace -->
+                <section class="task-workspace">
+                    <div id="taskList" class="task-grid">
+                        <!-- Tasks dynamically injected -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Management Modal (Handles Create & Edit) -->
+    <div id="taskModal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <h3 id="modalTitle">Define Objective</h3>
+            <input type="hidden" id="editTaskId">
+            <input type="text" id="taskTitle" placeholder="Task Headline">
+            <textarea id="taskDesc" placeholder="Executive Description..."></textarea>
+            <textarea id="taskRemarks" placeholder="Remarks & Pointers (Optional)..." style="height: 60px;"></textarea>
+            <select id="taskPriority">
+                <option value="High">Priority: High</option>
+                <option value="Medium">Priority: Medium</option>
+                <option value="Low">Priority: Low</option>
+            </select>
+            <div class="modal-actions">
+                <button onclick="closeTaskModal()" class="btn-outline">Dismiss</button>
+                <button id="saveTaskBtn" onclick="saveTask()" class="btn-gold">Confirm Objective</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
